@@ -16,18 +16,21 @@ config.oauth_token = "393197771-bvrAL4uYsQVnuJlkvKiB1C1Gg7Zn3yXWbUqIvyjh"
 config.oauth_token_secret = "vgdGVhkXxIRhkFLzaKWDcA6qXre76msZHaT4zZonQ"
 end
 
+ipsum = []
+
 		
 Twitter.search("#makeripsum").results.map do |tweet|
-	full_string = tweet.full_text.downcase
-	split_string = full_string.split(" ")
+	orig_string = tweet.full_text.downcase
+	split_string = orig_string.split(" ")
 	split_string.delete_if do |word|
-		# word == "#makeripsum" or word == "@makersquare" or 
-		word.include?("@") or word.include?("#") or word.include?("rt")
+		# word == "#makeripsum" or word == "@makersquare" or --looks for exactness which is what we don't want!
+		word.include?("@") or word.include?("#") or word.include?("rt")	
 	end	
-	puts split_string.inspect
 
-	# b.delete_if {|word| word == "#makeripsum"}
-	# print b
+	 puts joined_string = split_string.join(", ").inspect
+
+	# ipsum << joined_string
+
 end
 
 
