@@ -15,37 +15,21 @@ config.consumer_secret = "lxZEStujxJ8WE2MOtqhIVGM9RoDsO6Nebxn11uuV3I"
 config.oauth_token = "393197771-bvrAL4uYsQVnuJlkvKiB1C1Gg7Zn3yXWbUqIvyjh"
 config.oauth_token_secret = "vgdGVhkXxIRhkFLzaKWDcA6qXre76msZHaT4zZonQ"
 end
-# CSV.open("tweets.csv","wb") do |csv|
-#  		csv << ["handle", "text", "url"]
 
-
-# ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't speak frat", "dogs drink superwater", "devhouse party", "D-Money", "ruby redbird", "git push origin master", "git push and coast"]
-
-# ipsum = []
-# array = ["#"]
-
-# puts "How many paragraphs do you want?"
-
-# answer = gets.chomp.to_i
-
-# answer.times {5.times {ipsum.sample(5).each do |thing|
-# 	print "#{thing} "
-# end} }
 		
 Twitter.search("#makeripsum").results.map do |tweet|
-	a = tweet.full_text.inspect
-	b = a.split(" ")
-	b.delete_if {|word| word == "#makeripsum"}
-	print b
+	full_string = tweet.full_text.downcase
+	split_string = full_string.split(" ")
+	split_string.delete_if do |word|
+		# word == "#makeripsum" or word == "@makersquare" or 
+		word.include?("@") or word.include?("#") or word.include?("rt")
+	end	
+	puts split_string.inspect
+
+	# b.delete_if {|word| word == "#makeripsum"}
+	# print b
 end
 
-
-
-
-
-	# print a.split(" ")
-	# a.delete_if{|string| string.include?"@"}
-	# puts a.inspect
 
 # 	array_of_words = a.split(' ')
 # 	# array of words could be ['hey', 'whats', 'up', '@makersquare']
@@ -63,15 +47,18 @@ end
 # array.each {|x| x.blah}
 
 
-	# ipsum << tweet.full_text
-	# a = tweet.full_text.split(" ")
-	# puts a.inspect
-	# end
+# ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't speak frat", "dogs drink superwater", "devhouse party", "D-Money", "ruby redbird", "git push origin master", "git push and coast"]
 
+# ipsum = []
 
-# def hashtags
-#   @hashtags ||= entities(Twitter::Entity::Hashtag, :hashtags)
-# end
+# puts "How many paragraphs do you want?"
+
+# answer = gets.chomp.to_i
+
+# answer.times {5.times {ipsum.sample(5).each do |thing|
+# 	print "#{thing} "
+# end} 
+
 
 # How many paragraphs do you want?
 # # 	gets answer
