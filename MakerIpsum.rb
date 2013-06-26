@@ -16,22 +16,33 @@ config.oauth_token = "393197771-bvrAL4uYsQVnuJlkvKiB1C1Gg7Zn3yXWbUqIvyjh"
 config.oauth_token_secret = "vgdGVhkXxIRhkFLzaKWDcA6qXre76msZHaT4zZonQ"
 end
 
-ipsum = []
 
+ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't speak frat", "dogs drink superwater", "devhouse party", "D-Money", "ruby redbird", "git push origin master", "git push and coast"]
 		
-Twitter.search("#makeripsum").results.map do |tweet|
-	orig_string = tweet.full_text.downcase
+Twitter.search("#makeripsum", :count => 10000).results.map do |tweet|
+	orig_string = tweet.full_text
 	split_string = orig_string.split(" ")
-	split_string.delete_if do |word|
+	split_string.reject! do |word|
 		# word == "#makeripsum" or word == "@makersquare" or --looks for exactness which is what we don't want!
-		word.include?("@") or word.include?("#") or word.include?("rt")	
+		word.include?("@") or word.include?("#") or word.include?("RT")	or word.include?("http") or word.include?("&")
 	end	
-
-	 puts joined_string = split_string.join(", ").inspect
-
-	# ipsum << joined_string
-
+	 joined_string = split_string.join(" ")
+	 ipsum << joined_string
 end
+
+puts "How many paragraphs do you want?"
+
+answer = gets.chomp.to_i
+
+answer.times do
+		puts "\n"
+		ipsum.sample(20).each do |thing|
+			print "#{thing} "
+		end
+end
+
+
+
 
 
 # 	array_of_words = a.split(' ')
@@ -50,7 +61,7 @@ end
 # array.each {|x| x.blah}
 
 
-# ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't speak frat", "dogs drink superwater", "devhouse party", "D-Money", "ruby redbird", "git push origin master", "git push and coast"]
+# 
 
 # ipsum = []
 
