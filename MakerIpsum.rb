@@ -13,7 +13,7 @@ ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't spe
 
 india = ["limbu paani", "pav baji", "Amitabh Bachchan", "bollywood", "shah", "patel", "parekh", "dot on your forehead", "elephant", "monkey", "rickshaw", "brown people spicy?", "bhangra","curry", "mangoooooo", "Snapshot India", "slumdog app developer", "thank you come again", "hotel/motel", "aunty"]
 		
-Twitter.search("#makeripsum", :count => 10000).results.map do |tweet|
+Twitter.search("#makeripsum", :count => 10000).results.map do |tweet| #how do we include all tweets without setting a max count
 	orig_string = tweet.full_text
 	split_string = orig_string.split(" ")
 	split_string.reject! do |word|
@@ -24,7 +24,7 @@ Twitter.search("#makeripsum", :count => 10000).results.map do |tweet|
 	 ipsum << joined_string
 end
 
-puts "How many paragraphs do you want?"
+puts "How many paragraphs of makeripsum do you want?"
 
 answer = gets.chomp.to_i
 
@@ -37,13 +37,16 @@ ipsum.concat(india)
 
 answer.times do
 		puts "\n"
+		puts "\n"
 		ipsum.sample(21).each do |thing|
 			print "#{thing} "
+		# can we create a method that does this so we don't repeat code.	
 		end
 end	
 
 else
 answer.times do
+		puts "\n"
 		puts "\n"
 		ipsum.sample(21).each do |thing|
 			print "#{thing} "
@@ -52,9 +55,12 @@ end
 
 end
 
+#Next steps:
+# Capitalize first work in para and end each para with a "."
 
 
 
+# Shehzan breaking is down for us
 
 # 	array_of_words = a.split(' ')
 # 	# array of words could be ['hey', 'whats', 'up', '@makersquare']
@@ -72,7 +78,8 @@ end
 # array.each {|x| x.blah}
 
 
-# 
+
+# Original ruby code before we linked to twitter api 
 
 # ipsum = []
 
