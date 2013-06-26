@@ -9,7 +9,9 @@ Twitter.configure do |config|
 end
 
 
-ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't speak frat", "dogs drink superwater", "devhouse party", "D-Money", "ruby redbird", "git push origin master", "git push and coast"]
+ipsum = ["that's so bootstrap", "HAHA business", "alright alright", "I don't speak frat", "dogs drink superwater", "D-Money", "ruby redbird", "chi'lantro", "git push and coast"]
+
+india = ["limbu paani", "pav baji", "Amitabh Bachchan", "bollywood", "shah", "patel", "parekh", "dot on your forehead", "elephant", "monkey", "rickshaw", "brown people spicy?", "bhangra","curry", "mangoooooo", "Snapshot India", "slumdog app developer", "thank you come again", "hotel/motel", "aunty"]
 		
 Twitter.search("#makeripsum", :count => 10000).results.map do |tweet|
 	orig_string = tweet.full_text
@@ -26,11 +28,28 @@ puts "How many paragraphs do you want?"
 
 answer = gets.chomp.to_i
 
+puts "Maker ipsum with a shot of India? (yes or no)"
+
+answer2 = gets.downcase.chomp
+
+if answer2.chars.first == "y"
+ipsum.concat(india)
+
 answer.times do
 		puts "\n"
 		ipsum.sample(21).each do |thing|
 			print "#{thing} "
 		end
+end	
+
+else
+answer.times do
+		puts "\n"
+		ipsum.sample(21).each do |thing|
+			print "#{thing} "
+		end
+end
+
 end
 
 
