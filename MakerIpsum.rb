@@ -1,19 +1,11 @@
 require 'twitter'
 
 
-# Twitter.configure do |config|
-#   config.consumer_key = ENV['CONFIG_CONSUMER_KEY']
-#   config.consumer_secret = ENV['CONFIG_CONSUMER_SECRET']
-#   config.oauth_token = ENV['CONFIG_OAUTH_TOKEN']
-#   config.oauth_token_secret = ENV['CONFIG_OAUTH_TOKEN_SECRET']
-# end
-
-
 Twitter.configure do |config|
-config.consumer_key = "Uj8AmbADJc2IuMrBG5RRfA"
-config.consumer_secret = "lxZEStujxJ8WE2MOtqhIVGM9RoDsO6Nebxn11uuV3I"
-config.oauth_token = "393197771-bvrAL4uYsQVnuJlkvKiB1C1Gg7Zn3yXWbUqIvyjh"
-config.oauth_token_secret = "vgdGVhkXxIRhkFLzaKWDcA6qXre76msZHaT4zZonQ"
+  config.consumer_key = ENV['CONFIG_CONSUMER_KEY']
+  config.consumer_secret = ENV['CONFIG_CONSUMER_SECRET']
+  config.oauth_token = ENV['CONFIG_OAUTH_TOKEN']
+  config.oauth_token_secret = ENV['CONFIG_OAUTH_TOKEN_SECRET']
 end
 
 
@@ -24,7 +16,7 @@ Twitter.search("#makeripsum", :count => 10000).results.map do |tweet|
 	split_string = orig_string.split(" ")
 	split_string.reject! do |word|
 		# word == "#makeripsum" or word == "@makersquare" or --looks for exactness which is what we don't want!
-		word.include?("@") or word.include?("#") or word.include?("RT")	or word.include?("http") or word.include?("&")
+	 	word.include?("#") or word.include?("RT")	or word.include?("http") or word.include?("&") or word.include?("@")
 	end	
 	 joined_string = split_string.join(" ")
 	 ipsum << joined_string
