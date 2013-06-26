@@ -28,7 +28,7 @@ answer = gets.chomp.to_i
 
 answer.times do
 		puts "\n"
-		ipsum.sample(20).each do |thing|
+		ipsum.sample(21).each do |thing|
 			print "#{thing} "
 		end
 end
