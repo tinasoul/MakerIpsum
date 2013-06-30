@@ -1,5 +1,5 @@
 class Ipsum
-  @@dummy_ipsum = ["that's so bootstrap","HAHA Business!","alright, alright","I don't speak frat.","dogs drink superwater","D-Money","ruby redbird","chi'lantro?","git push and coast","716 Congress"]
+  @@dummy_ipsum = ["that's so bootstrap", "HAHA Business", "alright, alright", "I don't speak frat", "dogs drink superwater", "D-Money", "ruby redbird", "chi'lantro", "git push and coast", "716 Congress"]
 
 # require 'twitter'
 
@@ -11,13 +11,12 @@ class Ipsum
 #   config.oauth_token_secret = ENV['CONFIG_OAUTH_TOKEN_SECRET']
 # end
 
-  # def play
 
-  # puts "Welcome to Make Your Ipsum. Enter in a twitter hashtag so we can build an ipsum for ya. Your ipsum will be made of tweets from the hashtag you give us!"
+#   puts "Welcome to Make Your Ipsum. Enter in a twitter hashtag so we can build an ipsum for ya. Your ipsum will be made of tweets from the hashtag you give us!"
 
-  # @@hashtag_request = gets.chomp
+#   @@hashtag_request = gets.chomp
 
-  # make_twitter_array
+#   self.make_twitter_array
 
   # runs the Twitter data check method (not yet created) Test answer_twitter through Twitter search to see if it pulls up data- if yes then move on to next prompt if no then prompt user to enter another hashtag
 
@@ -25,9 +24,9 @@ class Ipsum
 
   # @@number_of_para = gets.chomp
 
-  # make_block
+  # self.make_block
 
-  # end
+
 
   # def make_twitter_array
 
@@ -43,8 +42,21 @@ class Ipsum
   # end
 
 
-  def self.make_block(number_of_paras)
-    @block = number_of_paras.times do make_para
+  def play
+
+    puts "Welcome to Makeripsum! How many paragraphs do you want?"
+
+    @@number_of_paras = gets.chomp.to_i
+    puts " "
+
+    make_block
+
+  end
+
+  def self.make_block
+   @@number_of_paras.times do 
+      @block = make_para
+      #variable assignment in the do block!
       puts " "
       puts " "
     end
@@ -52,8 +64,8 @@ class Ipsum
   end
 
   def self.make_para
-    @paragraph = 4.times do
-      make_sentence
+    4.times do
+      @paragraph = make_sentence
     end
     print @paragraph
   end
@@ -69,7 +81,7 @@ class Ipsum
       if last.include?(".") or last.include?("?") or last.include?("!") or last.include?("...")
       punc_last_array_item = last
       else
-      punc_last_array_item = last + "."
+      punc_last_array_item = last + ". "
       end
 
     # punc_last_array_item
@@ -81,11 +93,11 @@ class Ipsum
     raw_array.pop
     # Take the last string off of raw_array
 
-    rev_array = raw_array << punc_last_array_item
+    @@rev_array = raw_array << punc_last_array_item
     # Push the new punctuated string into raw_array
     # puts rev_array
 
-    raw_sentence = rev_array.join(" ")
+    raw_sentence = @@rev_array.join(" ")
     # Taking items out of array to make a string
     # puts raw_sentence
 
