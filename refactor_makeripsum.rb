@@ -16,19 +16,18 @@ class Ipsum
 
 #   @@hashtag_request = gets.chomp
 
-#   self.make_twitter_array
+#   self.search_twitter
 
   # runs the Twitter data check method (not yet created) Test answer_twitter through Twitter search to see if it pulls up data- if yes then move on to next prompt if no then prompt user to enter another hashtag
 
   # puts "Thanks. How many paragraphs do you want?"
 
-  # @@number_of_para = gets.chomp
+  # @@number_of_paras = gets.chomp
 
   # self.make_block
 
 
-
-  # def make_twitter_array
+  # def self.search_twitter
 
   # Twitter.search(@@hashtag_request, :count => 10000).results.each do |tweet| #how do we include all tweets without setting a max count
   # twitter_array = tweet.full_text
@@ -42,16 +41,20 @@ class Ipsum
   # end
 
 
-  def play
+
+  # Play without twitter
+  # ________________________________________
+
+  # def self.play
 
     puts "Welcome to Makeripsum! How many paragraphs do you want?"
 
     @@number_of_paras = gets.chomp.to_i
     puts " "
 
-    make_block
+    self.make_block
 
-  end
+  # end
 
   def self.make_block
    @@number_of_paras.times do 
