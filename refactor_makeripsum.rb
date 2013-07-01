@@ -16,14 +16,17 @@ end
 
   Twitter.search(@@hashtag_request, :count => 10000).results.each do |tweet| #how do we include all tweets without setting a max count
 
-  twitter_array = tweet.text.gsub(/^\s+/,'')  # remove leading spaces
+  twitter_array = tweet.text.gsub(/^\s+/," ")  # remove leading spaces
   twitter_array.gsub!(/\s+$/,'')  # remove trailing spaces
+  twitter_array.gsub!(/\\U\+\S*\b/, " ") # remove emojis
   split_string = twitter_array.split(" ")
   split_string.reject! do |word|
       word.include?("#") or word.include?("RT") or word.include?("http") or word.include?("@") or word.include?("&lt") or word.include?("&amp") 
       end 
   joined_string = split_string.join(" ")
-  @@dummy_ipsum << joined_string
+  int_string = joined_string.gsub(/^\s+/," ")  # remove leading spaces after removing the stuff on line 26
+  int_string.gsub!(/\s+$/,'')  # remove trailing spaces after removing the stuff on line 28
+  @@dummy_ipsum << int_string
     end
   end
 
@@ -64,8 +67,7 @@ end
     last = raw_array.last
 
       if last.include?(".") or last.include?("?") or last.include?("!") or last.include?("...")
-      punc_last_array_item = last + " "
-      else
+      punc_last_array_item = last + " " else
       punc_last_array_item = last + ". "
       end
 
